@@ -8,20 +8,20 @@
 </head>
 <body>
     <nav>
-        <h1>Log in to get started</h1>
-        <div class="logo"></div>
+        <h1 class="welcome">Log in to get started</h1>
+        <div class="logo">$</div>
         <section class="login">
-            <input type="text" class="text">
-            <input type="password" class="text">
-            <button>Log In</button>
+            <input type="text" class="text username" placeholder="user">
+            <input type="password" class="text pin" placeholder="PIN">
+            <button class="login">Log In</button>
         </section>
     </nav>
 
-    <main>
+    <main class="app">
         <section class="top">
             <div class="current-date">
                 <h2>Current balance</h2>
-                <p>As of 12/06/2023</p>
+                <p class="date">As of 12/06/2023</p>
             </div>
             <span class="current-balance">0000$</span>
         </section>
@@ -45,38 +45,38 @@
                         <span>Transfer money</span>
                         <div class="boxes">
                             <div class="box">
-                                <input type="text" class="text">
+                                <input type="text" class="text form_input-to">
                                 <p>Transfer to</p>
                             </div>
                             <div class="box">
-                                <input type="text" class="text">
+                                <input type="text" class="text form_input-amount">
                                 <p>Amount</p>
                             </div>
-                            <button>OK</button>
+                            <button class="transfer">OK</button>
                         </div>
                     </div>
                     <div class="loan area">
                         <span>Request loan</span>
                         <div class="boxes">
                             <div class="box">
-                                <input type="text" class="text">
+                                <input type="text" class="text form_input-loan">
                                 <p>Amount</p>
                             </div>
-                            <button>OK</button>
+                            <button class="btnLoan">OK</button>
                         </div>
                     </div>
                     <div class="close-account area">
                         <span>Close account</span>
                         <div class="boxes">
                             <div class="box">
-                                <input type="text" class="text">
+                                <input type="text" class="text form_input-user">
                                 <p>Amount</p>
                             </div>
                             <div class="box">
-                                <input type="text" class="text">
+                                <input type="text" class="text form_input-pin">
                                 <p>Amount</p>
                             </div>
-                            <button>OK</button>
+                            <button class="close">OK</button>
                         </div>
                     </div>
                 </div>

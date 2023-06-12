@@ -13,14 +13,19 @@ nav{
     justify-content: space-between;
     align-items: center;
     margin: 15px;
-
 }
 
 nav .logo{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     border-radius: 20px;
-    background-color: black;
+    background-color: grey;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 nav h1{
@@ -28,15 +33,24 @@ nav h1{
 }
 
 nav .login .text{
-    height: 30px;
+    height: 23px;
     width: 60px;
     font-size: 16px;
     padding: 2px;
+    text-align: center;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 0 5px grey;
 }
 
 nav .login button{
     height: 30px;
     width: 70px;
+    color: grey;
+    border-radius: 15px;
+    background-color: white;
+    border: none;
+    box-shadow: 0 0 5px grey;
 }
 
 main .top{
@@ -68,6 +82,7 @@ main .mid .left{
     height: 400px;
     background-color: white;
     border-radius: 20px;
+    overflow: scroll;
 }
 
 main .mid .left .movement{
