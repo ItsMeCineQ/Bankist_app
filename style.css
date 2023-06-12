@@ -77,12 +77,29 @@ main .mid{
     justify-content: space-around;
 }
 
+::-webkit-scrollbar{
+   background: none;
+   width: 5px;
+   border-radius: 20px;
+   height: 0;
+}
+
+::-webkit-scrollbar-track{
+    border-radius: 20px;
+    margin: 30px 0;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: grey;
+    border-radius: 10px;
+}
+
 main .mid .left{
     width: 500px;
-    height: 400px;
+    height: 485px;
     background-color: white;
     border-radius: 20px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 main .mid .left .movement{
@@ -189,4 +206,46 @@ main .mid .right .transfers .area .boxes button{
     height: 26px;
     border-radius: 10px;
     border: none;
+}
+
+main .bottom{
+    display: flex;
+    justify-content: space-around;
+}
+
+main .bottom .in,
+main .bottom .out,
+main .bottom .interest{
+    text-transform: uppercase;
+    color: grey;
+    font-weight: bold;
+}
+
+main .bottom .value_in{
+    color: green;
+    font-size: 24px;
+    margin-left: 5px;
+}
+
+main .bottom .value_out{
+    color: red;
+    font-size: 24px;
+    margin-left: 5px;
+}
+
+main .bottom .interest_value{
+    color: green;
+    font-size: 24px;
+    margin-left: 5px;
+}
+
+main .bottom .sort{
+    margin-right: 190px;
+    width: 50px;
+    border: none;
+    box-shadow: 0 0 5px grey;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: grey;
 }
