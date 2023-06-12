@@ -7,6 +7,82 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <h1>Log in to get started</h1>
+        <div class="logo"></div>
+        <section class="login">
+            <input type="text" class="text">
+            <input type="password" class="text">
+            <button>Log In</button>
+        </section>
+    </nav>
+
+    <main>
+        <section class="top">
+            <div class="current-date">
+                <h2>Current balance</h2>
+                <p>As of 12/06/2023</p>
+            </div>
+            <span class="current-balance">0000$</span>
+        </section>
+
+        <section class="mid">
+            <section class="left">
+                <div class="movement">
+                    <span class="deposit">2 Deposit</span>
+                    <p class="date">3 days ago</p>
+                    <p class="amount">4 000$</p>
+                </div>
+                <div class="movement">
+                    <span class="withdraw">1 Withdrawal</span>
+                    <p class="date">3 days ago</p>
+                    <p class="amount">4 000$</p>
+                </div>
+            </section>
+            <section class="right">
+                <div class="transfers">
+                    <div class="transfer-money area">
+                        <span>Transfer money</span>
+                        <div class="boxes">
+                            <div class="box">
+                                <input type="text" class="text">
+                                <p>Transfer to</p>
+                            </div>
+                            <div class="box">
+                                <input type="text" class="text">
+                                <p>Amount</p>
+                            </div>
+                            <button>OK</button>
+                        </div>
+                    </div>
+                    <div class="loan area">
+                        <span>Request loan</span>
+                        <div class="boxes">
+                            <div class="box">
+                                <input type="text" class="text">
+                                <p>Amount</p>
+                            </div>
+                            <button>OK</button>
+                        </div>
+                    </div>
+                    <div class="close-account area">
+                        <span>Close account</span>
+                        <div class="boxes">
+                            <div class="box">
+                                <input type="text" class="text">
+                                <p>Amount</p>
+                            </div>
+                            <div class="box">
+                                <input type="text" class="text">
+                                <p>Amount</p>
+                            </div>
+                            <button>OK</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
     <script src="main.js"></script>
 </body>
 </html>
