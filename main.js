@@ -73,6 +73,12 @@ const displayMovements = function(movements){
 }
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function(movements){
+    const balance = movements.reduce((acc, cur) => acc + cur);
+    labelBalance.innerHTML = `${balance}$`;
+};
+calcDisplayBalance(account1.movements);
+
 const createUsernames = function(accounts){
     accounts.forEach(function(acc){
         acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
