@@ -33,9 +33,9 @@ const accounts = [account1, account2, account3, account4];
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.current-balance');
-const labelSumIn = document.querySelector('.summary_value-in');
-const labelSumOut = document.querySelector('.summary_value-out');
-const labelSumInterest = document.querySelector('.summary_value-interest');
+const labelSumIn = document.querySelector('.value_in');
+const labelSumOut = document.querySelector('.value_out');
+const labelSumInterest = document.querySelector('.value_interest');
 const labelTimer = document.querySelector('.timer');
 
 const containerApp = document.querySelector('.app');
@@ -79,11 +79,29 @@ const calcDisplayBalance = function(movements){
 };
 calcDisplayBalance(account1.movements);
 
+const displayDepositBalance = function(movements){
+    const balance = movements.filter(mov => mov > 0).reduce((acc, mov) => acc+mov, 0);
+    labelSumIn.innerHTML = `${balance}$`;
+};
+displayDepositBalance(account1.movements);
+
+const displayWithdrawalBalance = function(movements){
+    const balance = movements.filter(mov => mov < 0).reduce((acc, mov) => acc+mov, 0);
+    labelSumOut.innerHTML = `${balance}$`;
+};
+displayWithdrawalBalance(account1.movements);
+
+const interestBalance = function(acc){
+    const balance = acc.interestRate * displayDepositBalance(acc.movements);
+    labelSumInterest.innerHTML = `${balance}$`;
+};
+interestBalance(account1);
+
 const createUsernames = function(accounts){
     accounts.forEach(function(acc){
         acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
     });
-   
 };
 createUsernames(accounts);
 console.log(accounts);
+
