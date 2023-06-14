@@ -64,7 +64,7 @@ const displayMovements = function(movements){
         const html = `
         <div class="movement">
             <span class="${type}">${i+1} ${type}</span>
-            <p class="amount">${mov}$</p>
+            <p class="amount">${mov} EUR</p>
         </div>
         `;
 
@@ -75,25 +75,25 @@ displayMovements(account1.movements);
 
 const calcDisplayBalance = function(movements){
     const balance = movements.reduce((acc, cur) => acc + cur);
-    labelBalance.innerHTML = `${balance}$`;
+    labelBalance.innerHTML = `${balance} EUR`;
 };
 calcDisplayBalance(account1.movements);
 
-const displayDepositBalance = function(movements){
-    const balance = movements.filter(mov => mov > 0).reduce((acc, mov) => acc+mov, 0);
-    labelSumIn.innerHTML = `${balance}$`;
-};
-displayDepositBalance(account1.movements);
+const displaySummary = function(movements){
+    const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc+mov, 0);
+    labelSumIn.innerHTML = `${incomes} EUR`;
 
-const displayWithdrawalBalance = function(movements){
-    const balance = movements.filter(mov => mov < 0).reduce((acc, mov) => acc+mov, 0);
-    labelSumOut.innerHTML = `${balance}$`;
+    const outcomes = movements.filter(mov => mov < 0).reduce((acc, mov) => acc+mov, 0);
+    labelSumOut.innerHTML = `${Math.abs(outcomes)} EUR`;
+
+    const interest = movements.filter(mov => mov>0).map(mov => mov*1.2/100).filter(mov => mov>=1).reduce((acc, mov) => acc+mov);
+    labelSumInterest.innerHTML = `${interest} EUR`;
 };
-displayWithdrawalBalance(account1.movements);
+displaySummary(account1.movements);
 
 const interestBalance = function(acc){
     const balance = acc.interestRate * displayDepositBalance(acc.movements);
-    labelSumInterest.innerHTML = `${balance}$`;
+    labelSumInterest.innerHTML = `${balance} EUR`;
 };
 interestBalance(account1);
 
