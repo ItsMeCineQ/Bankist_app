@@ -53,6 +53,11 @@ nav .login button{
     box-shadow: 0 0 5px grey;
 }
 
+main{
+    opacity: 0;
+    transition: all 1s;
+}
+
 main .top{
     display: flex;
     justify-content: space-between;
