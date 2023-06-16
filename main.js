@@ -119,12 +119,29 @@ const updateUI = function(acc){
     calcDisplayBalance(acc);
 }
 
+// login 
 btnLogin.addEventListener('click', function(e){
     e.preventDefault();
-    const account = accounts.find(acc => acc.username === inputLoginUsername.value);
+    currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
     
-    if(inputLoginUsername.value === account.username && Number(inputLoginPin.value) === account.pin){
+    if(inputLoginUsername.value === currentAccount.username && Number(inputLoginPin.value) === currentAccount.pin){
         containerApp.style.opacity = 100;
-        updateUI(account);
-    }
+        updateUI(currentAccount);
+    };
+    inputLoginUsername.value = inputLoginPin.value = '';
 });
+
+// Transfer money
+btnTransfer.addEventListener('click', function(e){
+    e.preventDefault();
+    const amount = inputTransferAmount.value;
+    const receiver = inputTransferTo.value;
+    if(amount > 0){
+        currentAccount.movements.push(-amount);
+        accounts.findIndex(acc => acc.username === receiver);
+        console.log(accounts.receiver);
+        updateUI(currentAccount);
+    }
+    inputTransferAmount.value = inputTransferTo.value = '';
+});
+
