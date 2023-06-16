@@ -134,12 +134,11 @@ btnLogin.addEventListener('click', function(e){
 // Transfer money
 btnTransfer.addEventListener('click', function(e){
     e.preventDefault();
-    const amount = inputTransferAmount.value;
-    const receiver = inputTransferTo.value;
-    if(amount > 0){
+    const amount = Number(inputTransferAmount.value);
+    const receiver = accounts.find(acc => acc.username === inputTransferTo.value);
+    if(amount > 0 && receiver && amount <= currentAccount.balance && receiver.username !== currentAccount.username){
         currentAccount.movements.push(-amount);
-        accounts.findIndex(acc => acc.username === receiver);
-        console.log(accounts.receiver);
+        receiver.movements.push(amount);
         updateUI(currentAccount);
     }
     inputTransferAmount.value = inputTransferTo.value = '';
