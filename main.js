@@ -144,3 +144,26 @@ btnTransfer.addEventListener('click', function(e){
     inputTransferAmount.value = inputTransferTo.value = '';
 });
 
+// Loan money
+btnLoan.addEventListener('click', function(e){
+    e.preventDefault();
+    const amount = inputLoanAmount.value;
+    if(c){
+        currentAccount.movements.push(amount);
+        updateUI(currentAccount);
+    }
+    inputLoanAmount.value = '';
+});
+
+// Close account
+btnClose.addEventListener('click', function(e){
+    e.preventDefault();
+    
+    if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin){
+        const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+        accounts.splice(index, 1);
+        updateUI(currentAccount);
+    };
+    inputCloseUsername.value = inputClosePin.value = '';
+    containerApp.style.opacity = 0;
+});
