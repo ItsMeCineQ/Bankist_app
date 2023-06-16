@@ -92,7 +92,7 @@ const displaySummary = function(movements){
 displaySummary(account1.movements);
 
 const interestBalance = function(acc){
-    const balance = acc.interestRate * displayDepositBalance(acc.movements);
+    const balance = acc.interestRate * displaySummary(acc.movements);
     labelSumInterest.innerHTML = `${balance} EUR`;
 };
 interestBalance(account1);
@@ -105,3 +105,12 @@ const createUsernames = function(accounts){
 createUsernames(accounts);
 console.log(accounts);
 
+const account = accounts.find(acc => acc.owner == 'Jessica Davis');
+console.log(account);
+
+// alternative
+/* for(const acc of accounts){
+    if(acc.owner == 'Jessica Davis'){
+        console.log(acc);
+    }
+} */
