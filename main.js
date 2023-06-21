@@ -101,7 +101,6 @@ const createUsernames = function(accounts){
     });
 };
 createUsernames(accounts);
-console.log(accounts);
 
 /* const account = accounts.find(acc => acc.owner == 'Jessica Davis');
 console.log(account);
@@ -195,3 +194,29 @@ btnSort.addEventListener('click', function(e){
     const movementsUI = Array.from(document.querySelectorAll('.amount'));
     console.log(movementsUI.map(el => Number(el.textContent.replace('EUR', ''))));
 }); */
+
+// ************************************************************
+// ****************** ARRAY METHODS PRACTICE ******************
+// ************************************************************
+
+// #1
+// Total deposits
+const bankDepositSum = accounts
+    .flatMap(acc => acc.movements)
+    .filter(mov => mov>0)
+    .reduce((acc, cur)=>acc+cur,0);
+console.log(bankDepositSum);
+
+// #2
+/* const bankDeposits1000 = accounts
+    .flatMap(acc => acc.movements)
+    .filter(mov => mov>=1000).length;
+console.log(bankDeposits1000); */
+
+const bankDeposits1000 = accounts
+    .flatMap(acc => acc.movements)
+    .reduce((count, cur) => cur >= 1000 ? ++count : count, 0);
+console.log(bankDeposits1000);
+
+let a = 10;
+console.log(a++);
