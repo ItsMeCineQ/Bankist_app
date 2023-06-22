@@ -165,7 +165,7 @@ console.log(account);
     }
 } */
 
-let currentAccount;
+let currentAccount, timer;
 
 const updateUI = function(acc){
     displayMovements(acc);
@@ -173,21 +173,50 @@ const updateUI = function(acc){
     calcDisplayBalance(acc);
 }
 
+const startLogOutTimer = function(){
+    // Set time to 5 minutes
+    let time = 300;
+
+    const tick = function(){
+        const sec = String(time % 60).padStart(2, 0);
+        const min = String(Math.trunc(time / 60)).padStart(2, 0);
+        // In each call print the remaining time to the UI
+        labelTimer.textContent = `${min}:${sec}`;
+
+        // When the time is at 0 secs stop timer and log out user
+        if(time === 0){
+            clearInterval(timer);
+            containerApp.style.opacity = 0;
+        };
+
+         // Decrease 1s
+         time--;
+    };
+   
+    // Call the timer every second
+    tick();
+    timer = setInterval(tick, 1000);
+    return timer;
+};
+
 // FAKE ALWAYS LOGGED IN
 
-currentAccount = account1;
+/* currentAccount = account1;
 updateUI(currentAccount);
-containerApp.style.opacity = 100;
+containerApp.style.opacity = 100; */
 
 // Experimenting with API
 
 // login 
 btnLogin.addEventListener('click', function(e){
     e.preventDefault();
+
     currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
     
     if(inputLoginUsername.value === currentAccount.username && Number(inputLoginPin.value) === currentAccount.pin){
         containerApp.style.opacity = 100;
+        if(timer) clearInterval(timer);
+        timer = startLogOutTimer();
         updateUI(currentAccount);
     };
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -232,6 +261,10 @@ btnTransfer.addEventListener('click', function(e){
         updateUI(currentAccount);
     }
     inputTransferAmount.value = inputTransferTo.value = '';
+
+    // Reset the timer
+    clearInterval(timer);
+    startLogOutTimer();
 });
 
 // Loan money
@@ -239,13 +272,19 @@ btnLoan.addEventListener('click', function(e){
     e.preventDefault();
     const amount = Math.floor(inputLoanAmount.value);
     if(amount > 0 && currentAccount.movements.some(mov => mov >= amount/10)){
-        currentAccount.movements.push(amount);
+        setTimeout(function(){
+            currentAccount.movements.push(amount);
 
-        currentAccount.movementsDates.push(new Date().toISOString());
+            currentAccount.movementsDates.push(new Date().toISOString());
 
-        updateUI(currentAccount);
+            updateUI(currentAccount);
+        }, 3000);
     };
     inputLoanAmount.value = '';
+
+    // Reset timer
+    clearInterval(timer);
+    startLogOutTimer();
 });
 
 // Close account
