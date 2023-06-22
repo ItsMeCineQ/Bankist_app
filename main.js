@@ -15,7 +15,7 @@ const account1 = {
         '2023-06-20T23:36:17.929Z',
         '2023-06-21T10:51:36.790Z',
       ],
-      currency: '€',
+      currency: 'EUR',
       locale: 'pl-PL', 
 };
 
@@ -94,6 +94,13 @@ const formatMovementDate = function(date, locale){
     return new Intl.DateTimeFormat(locale).format(date);
 };
 
+const formatCur = function(value, locale, currency){
+    return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: currency,
+    }).format(value);
+};
+
 const displayMovements = function(acc, sort = false){
     containerMovements.innerHTML = '';
 
@@ -106,11 +113,13 @@ const displayMovements = function(acc, sort = false){
         
         const displayDate = formatMovementDate(date, acc.locale);
 
+        const formattedMov = formatCur(mov, acc.locale, acc.currency);
+
         const html = `
         <div class="movement">
             <span class="${type}">${i+1} ${type}</span>
             <p class="movement-date date">${displayDate}</p>
-            <p class="amount">${mov.toFixed(2)} €</p>
+            <p class="amount">${formattedMov}</p>
         </div>
         `;
 
@@ -120,18 +129,18 @@ const displayMovements = function(acc, sort = false){
 
 const calcDisplayBalance = function(acc){
     acc.balance = acc.movements.reduce((acc, cur) => acc + cur);  
-    labelBalance.innerHTML = `${acc.balance.toFixed(2)} €`;
+    labelBalance.innerHTML = formatCur(acc.balance, acc.locale, acc.currency);
 };
 
 const displaySummary = function(acc){
     const incomes = acc.movements.filter(mov => mov > 0).reduce((acc, mov) => acc+mov, 0);
-    labelSumIn.innerHTML = `${incomes.toFixed(2)} €`;
+    labelSumIn.innerHTML = formatCur(incomes, acc.locale, acc.currency);
 
     const outcomes = acc.movements.filter(mov => mov < 0).reduce((acc, mov) => acc+mov, 0);
-    labelSumOut.innerHTML = `${Math.abs(outcomes.toFixed(2))} €`;
+    labelSumOut.innerHTML = formatCur(outcomes, acc.locale, acc.currency);
 
     const interest = acc.movements.filter(mov => mov>0).map(deposit => deposit*acc.interestRate/100).filter(mov => mov>=1).reduce((acc, mov) => acc+mov);
-    labelSumInterest.innerHTML = `${interest.toFixed(2)} €`;
+    labelSumInterest.innerHTML = formatCur(interest, acc.locale, acc.currency);
 };
 
 const interestBalance = function(acc){
